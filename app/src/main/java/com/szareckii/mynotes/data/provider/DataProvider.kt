@@ -10,4 +10,5 @@ interface DataProvider {
     fun saveNote(note: Note): LiveData<NoteResult>
     fun getNoteById(id: String): LiveData<NoteResult>
     fun getCurrentUser() :LiveData<User?>
+    fun deleteNote(id: String): LiveData<NoteResult>
 }

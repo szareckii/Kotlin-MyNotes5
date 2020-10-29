@@ -7,7 +7,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.firebase.ui.auth.AuthUI
 import com.szareckii.mynotes.R
@@ -16,6 +15,7 @@ import com.szareckii.mynotes.ui.base.BaseActivity
 import com.szareckii.mynotes.ui.note.NoteActivity
 import com.szareckii.mynotes.ui.splash.SplashActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity<List<Note>?, MainViewState>() {
 
@@ -25,10 +25,7 @@ class MainActivity : BaseActivity<List<Note>?, MainViewState>() {
         }
     }
 
-    override val viewModel: MainViewModel by lazy {
-        ViewModelProvider(this).get(MainViewModel::class.java)
-    }
-
+    override val viewModel: MainViewModel by viewModel()
     override val  layoutRes = R.layout.activity_main
     lateinit var adapter: NotesRVAdapter
 
