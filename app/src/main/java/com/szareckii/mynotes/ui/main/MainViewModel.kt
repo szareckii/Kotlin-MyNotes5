@@ -7,7 +7,7 @@ import com.szareckii.mynotes.data.entity.Note
 import com.szareckii.mynotes.data.model.NoteResult
 import com.szareckii.mynotes.ui.base.BaseViewModel
 
-class MainViewModel : BaseViewModel<List<Note>?, MainViewState>() {
+class MainViewModel(val notesRepository: NotesRepository) : BaseViewModel<List<Note>?, MainViewState>() {
 
     private val notesObserver = Observer {result: NoteResult? ->
         result ?: return@Observer
@@ -17,7 +17,7 @@ class MainViewModel : BaseViewModel<List<Note>?, MainViewState>() {
         }
     }
 
-    private val repositoryNotes = NotesRepository.getNotes()
+    private val repositoryNotes = notesRepository.getNotes()
 
     init {
         repositoryNotes.observeForever(notesObserver)
